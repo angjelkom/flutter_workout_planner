@@ -3,5 +3,5 @@ class Exercise {
   final String name;
   final String icon;
 
-  Exercise(this.id, this.name, this.icon);
+  const Exercise(this.id, this.name, this.icon);
 }

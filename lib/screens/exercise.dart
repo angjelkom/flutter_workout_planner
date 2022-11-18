@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_workout_planner/managers/edit_workout.dart';
-import 'package:flutter_workout_planner/models/exercise.dart';
 import 'package:flutter_workout_planner/widgets/exercise.dart';
-import 'package:uuid/uuid.dart';
+
+import '../utils/const.dart';
 
 class ExerciseScreen extends ConsumerStatefulWidget {
   const ExerciseScreen({super.key, required this.onDone});
@@ -15,14 +15,6 @@ class ExerciseScreen extends ConsumerStatefulWidget {
 }
 
 class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
-  final exercises = [
-    Exercise(const Uuid().v1(), 'Barbell Row', 'barbell-row.png'),
-    Exercise(const Uuid().v1(), 'Bench Press', 'bench-press.png'),
-    Exercise(const Uuid().v1(), 'Shoulder Press', 'shoulder-press.png'),
-    Exercise(const Uuid().v1(), 'Deadlift', 'deadlift.png'),
-    Exercise(const Uuid().v1(), 'Squat', 'squat.png'),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
