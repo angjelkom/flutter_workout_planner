@@ -97,7 +97,11 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
                 Row(
                   children: [
                     const Text('Rest between sets:'),
-                    Switch(
+                    const SizedBox(
+                      width: 8.0,
+                    ),
+                    CupertinoSwitch(
+                        activeColor: Colors.blue,
                         value: editManager.rest != null,
                         onChanged: (value) {
                           if (value) {
@@ -111,7 +115,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
                 if (editManager.rest != null) ...[
                   smallerSpace,
                   SizedBox(
-                    height: 72.0,
+                    height: 96.0,
                     child: CupertinoTimerPicker(
                       initialTimerDuration: editManager.rest!,
                       mode: CupertinoTimerPickerMode.ms,

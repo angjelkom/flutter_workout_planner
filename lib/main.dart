@@ -55,7 +55,6 @@ class WorkoutPlannerApp extends StatelessWidget {
               backgroundColor: Colors.black, // foreground (text) color
             ),
           ),
-          // appBarTheme: const AppBarTheme(backgroundColor: backgroundColor)
         ),
       ),
     );
