@@ -4,6 +4,22 @@ import 'package:flutter_workout_planner/models/exercise.dart';
 import 'package:flutter_workout_planner/models/workout.dart';
 import 'package:flutter_workout_planner/models/workout_set.dart';
 
+enum WorkoutValidator {
+  ok("ok"),
+  name("Please enter a Name"),
+  exercise("Please select an Exercise"),
+  oneSet("Please make sure at least one set is filled"),
+  sets("Please make sure all your sets are filled"),
+  set("Please fill your set"),
+  rep("Please set the reps for your set"),
+  weight("Please set the weight on your set"),
+  zeroSets("Number of sets must be higher than zero."),
+  zeroReps("Number of reps must be higher than zero.");
+
+  const WorkoutValidator(this.message);
+  final String message;
+}
+
 class EditWorkoutManager with ChangeNotifier {
   String? _id;
   final TextEditingController _name = TextEditingController();
@@ -60,7 +76,7 @@ class EditWorkoutManager with ChangeNotifier {
         _id, _name.text, _exercise!, _sets, _rest, _color, _notes.text);
   }
 
-  void reset() {
+  void clear() {
     _id = null;
     _name.text = '';
     _notes.text = '';
@@ -79,6 +95,33 @@ class EditWorkoutManager with ChangeNotifier {
     _sets = workout.sets;
     _rest = workout.rest;
     _color = workout.color;
+  }
+
+  WorkoutValidator validate() {
+    if (_name.text.isEmpty) return WorkoutValidator.name;
+    if (_exercise == null) return WorkoutValidator.exercise;
+    if (_sets.length == 1 &&
+        _sets.first.sets.text.isEmpty &&
+        _sets.first.reps.text.isEmpty &&
+        _sets.first.weight.text.isEmpty) return WorkoutValidator.oneSet;
+
+    for (var set in _sets) {
+      if (set.sets.text.isEmpty &&
+          set.reps.text.isEmpty &&
+          set.weight.text.isEmpty) return WorkoutValidator.sets;
+      if (set.sets.text.isEmpty) return WorkoutValidator.set;
+      if (set.reps.text.isEmpty) return WorkoutValidator.rep;
+      if (set.weight.text.isEmpty) return WorkoutValidator.weight;
+      if (set.sets.text == '0') return WorkoutValidator.zeroSets;
+      if (set.reps.text == '0') return WorkoutValidator.zeroReps;
+    }
+
+    if (_sets.first.sets.text.isEmpty &&
+        _sets.first.reps.text.isEmpty &&
+        _sets.first.weight.text.isEmpty) return WorkoutValidator.oneSet;
+    if (_exercise == null) return WorkoutValidator.exercise;
+
+    return WorkoutValidator.ok;
   }
 }
 

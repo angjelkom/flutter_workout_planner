@@ -38,7 +38,7 @@ class _WorkoutsScreenState extends ConsumerState<WorkoutsScreen> {
                         borderRadius: BorderRadius.circular(120.0),
                         side: const BorderSide(color: Colors.blueGrey))),
                 onPressed: () {
-                  ref.read(editWorkoutManager).reset();
+                  ref.read(editWorkoutManager).clear();
                   context.go('/workouts/workout');
                 },
                 child: const Text('Add'))

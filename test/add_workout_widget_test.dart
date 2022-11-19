@@ -12,7 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_workout_planner/main.dart';
 import 'package:flutter_workout_planner/managers/edit_workout.dart';
 import 'package:flutter_workout_planner/screens/workout.dart';
-import 'package:flutter_workout_planner/utils/const.dart';
+import 'package:flutter_workout_planner/utils/utils.dart';
 import 'package:flutter_workout_planner/widgets/workout.dart';
 
 void main() {

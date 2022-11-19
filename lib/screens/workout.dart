@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../managers/edit_workout.dart';
 import '../managers/workouts.dart';
-import '../utils/const.dart';
+import '../utils/utils.dart';
 import '../widgets/workout_set.dart';
 import 'exercise.dart';
 
@@ -176,10 +176,16 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
                       foregroundColor: Colors.red,
                     ),
                     onPressed: () {
-                      ref
-                          .read(workoutsManager.notifier)
-                          .remove(editManager.id!);
-                      context.pop();
+                      showConfirmDialog(context,
+                          title: 'Remove Profile',
+                          text:
+                              'This will remove the profile along with all your workouts, continue?',
+                          onConfirm: () {
+                        ref
+                            .read(workoutsManager.notifier)
+                            .remove(editManager.id!);
+                        context.pop();
+                      });
                     },
                     icon: const Icon(Icons.add),
                     label: const Text('Delete')),

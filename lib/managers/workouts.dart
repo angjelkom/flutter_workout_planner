@@ -20,6 +20,10 @@ class WorkoutsManager extends StateNotifier<List<Workout>> {
   void remove(String id) {
     state = state.where((workout) => workout.id != id).toList();
   }
+
+  void clear() {
+    state = [];
+  }
 }
 
 final workoutsManager =

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_workout_planner/managers/edit_workout.dart';
 import 'package:flutter_workout_planner/widgets/exercise.dart';
 
-import '../utils/const.dart';
+import '../utils/utils.dart';
 
 class ExerciseScreen extends ConsumerStatefulWidget {
   const ExerciseScreen({super.key, required this.onDone});

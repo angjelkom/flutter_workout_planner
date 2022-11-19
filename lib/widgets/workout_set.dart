@@ -27,6 +27,8 @@ class _WorkoutSetWidgetState extends ConsumerState<WorkoutSetWidget> {
         children: [
           Expanded(
               child: TextField(
+            textAlign: TextAlign.end,
+            keyboardType: TextInputType.number,
             controller: widget.set.sets,
           )),
           frontSpace,
@@ -34,6 +36,8 @@ class _WorkoutSetWidgetState extends ConsumerState<WorkoutSetWidget> {
           behindSpace,
           Expanded(
               child: TextField(
+            textAlign: TextAlign.end,
+            keyboardType: TextInputType.number,
             controller: widget.set.reps,
           )),
           frontSpace,
@@ -41,6 +45,8 @@ class _WorkoutSetWidgetState extends ConsumerState<WorkoutSetWidget> {
           behindSpace,
           Expanded(
               child: TextField(
+            textAlign: TextAlign.end,
+            keyboardType: TextInputType.number,
             controller: widget.set.weight,
           )),
           frontSpace,

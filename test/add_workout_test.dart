@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_workout_planner/managers/edit_workout.dart';
 import 'package:flutter_workout_planner/managers/workouts.dart';
-import 'package:flutter_workout_planner/utils/const.dart';
+import 'package:flutter_workout_planner/utils/utils.dart';
 
 void main() {
   test('Add Workout test', () {
