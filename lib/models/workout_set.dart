@@ -7,6 +7,8 @@ class WorkoutSet {
   final TextEditingController reps = TextEditingController();
   final TextEditingController weight = TextEditingController();
 
+  WorkoutSet();
+
   void setSets(int amount) {
     sets.text = '$amount';
   }
@@ -24,4 +26,12 @@ class WorkoutSet {
     reps.dispose();
     weight.dispose();
   }
+
+  factory WorkoutSet.fromJson(Map<String, dynamic> json) => WorkoutSet()
+    ..sets.text = json['sets']
+    ..reps.text = json['reps']
+    ..weight.text = json['weight'];
+
+  Map<String, dynamic> toJson() =>
+      {'id': id, 'sets': sets.text, 'reps': reps.text, 'weight': weight.text};
 }

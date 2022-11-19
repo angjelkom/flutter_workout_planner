@@ -12,7 +12,8 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final profile = ref.watch(profileManager);
+    final profileData = ref.watch(profileManager);
+    final profile = profileData.profile;
 
     if (profile == null) return Container();
 

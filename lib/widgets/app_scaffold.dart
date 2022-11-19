@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_workout_planner/managers/edit_workout.dart';
-import 'package:flutter_workout_planner/managers/profile.dart';
 import 'package:flutter_workout_planner/managers/workouts.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -37,8 +36,8 @@ class _AppScaffoldState extends ConsumerState<AppScaffold> {
   @override
   Widget build(BuildContext context) {
     final location = GoRouter.of(context).location;
-    final workouts = ref.watch(workoutsManager);
-    final profile = ref.watch(profileManager);
+    final workoutsData = ref.watch(workoutsManager);
+    final workouts = workoutsData.workouts;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -86,12 +85,11 @@ class _AppScaffoldState extends ConsumerState<AppScaffold> {
                         });
                       }
                     }),
-                    items: [
-                        const BottomNavigationBarItem(
+                    items: const [
+                        BottomNavigationBarItem(
                             icon: Icon(MdiIcons.dumbbell), label: 'Workouts'),
-                        if (profile != null)
-                          const BottomNavigationBarItem(
-                              icon: Icon(Icons.settings), label: 'Settings'),
+                        BottomNavigationBarItem(
+                            icon: Icon(Icons.settings), label: 'Settings'),
                       ])
                 : null,
         floatingActionButton: workouts.isEmpty || location != '/workouts'

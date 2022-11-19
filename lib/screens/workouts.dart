@@ -16,7 +16,14 @@ class WorkoutsScreen extends ConsumerStatefulWidget {
 class _WorkoutsScreenState extends ConsumerState<WorkoutsScreen> {
   @override
   Widget build(BuildContext context) {
-    final workouts = ref.watch(workoutsManager);
+    final workoutsData = ref.watch(workoutsManager);
+    final workouts = workoutsData.workouts;
+
+    if (!workoutsData.loaded) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
 
     if (workouts.isEmpty) {
       return Center(

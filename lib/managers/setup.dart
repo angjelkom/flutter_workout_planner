@@ -83,6 +83,12 @@ class SetupManager with ChangeNotifier {
     _name.text = '';
     notifyListeners();
   }
+
+  @override
+  void dispose() {
+    _name.dispose();
+    super.dispose();
+  }
 }
 
 final setupManager = ChangeNotifierProvider<SetupManager>((ref) {

@@ -65,9 +65,9 @@ class EditWorkoutManager with ChangeNotifier {
 
   @override
   void dispose() {
-    for (var set in _sets) {
-      set.dispose();
-    }
+    clear();
+    _name.dispose();
+    _notes.dispose();
     super.dispose();
   }
 
@@ -81,6 +81,9 @@ class EditWorkoutManager with ChangeNotifier {
     _name.text = '';
     _notes.text = '';
     _exercise = null;
+    for (var set in _sets) {
+      set.dispose();
+    }
     _sets = [WorkoutSet()];
     _rest = null;
     _color = null;
