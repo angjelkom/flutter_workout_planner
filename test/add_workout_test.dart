@@ -37,9 +37,9 @@ void main() {
     expect(workout.id, isNull);
     expect(workout.name, name);
     expect(workout.exercise, exercises.first);
-    expect(workout.sets.first.sets.text, '$sets');
-    expect(workout.sets.first.reps.text, '$reps');
-    expect(workout.sets.first.weight.text, '$weight');
+    expect(workout.sets.first.sets, '$sets');
+    expect(workout.sets.first.reps, '$reps');
+    expect(workout.sets.first.weight, '$weight');
     expect(workout.rest, rest);
     expect(workout.color, colors.first);
     expect(workout.notes, notes);

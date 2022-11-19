@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_workout_planner/models/workout_set.dart';
+import 'package:flutter_workout_planner/models/workout_set_field.dart';
 
 class WorkoutSetWidget extends ConsumerStatefulWidget {
   const WorkoutSetWidget({super.key, required this.set});
 
-  final WorkoutSet set;
+  final WorkoutSetField set;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>

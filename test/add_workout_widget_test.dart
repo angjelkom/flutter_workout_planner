@@ -18,7 +18,7 @@ import 'package:flutter_workout_planner/widgets/workout.dart';
 void main() {
   testWidgets('Add Workout test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(ProviderScope(child: WorkoutPlannerApp()));
+    await tester.pumpWidget(const ProviderScope(child: WorkoutPlannerApp()));
 
     expect(find.text('Add your first workout!'), findsOneWidget);
 

@@ -81,9 +81,9 @@ class _WorkoutWidgetState extends ConsumerState<WorkoutWidget> {
                                   backgroundColor: widget.workout.color,
                                   radius: 4.0,
                                 ),
-                                Text('${set.sets.text} Sets'),
-                                Text('${set.reps.text} Reps'),
-                                Text('${set.weight.text} Kg'),
+                                Text('${set.sets} Sets'),
+                                Text('${set.reps} Reps'),
+                                Text('${set.weight} Kg'),
                               ],
                             ),
                           ))

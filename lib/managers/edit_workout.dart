@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_workout_planner/models/exercise.dart';
 import 'package:flutter_workout_planner/models/workout.dart';
-import 'package:flutter_workout_planner/models/workout_set.dart';
+import 'package:flutter_workout_planner/models/workout_set_field.dart';
 
 enum WorkoutValidator {
   ok("ok"),
@@ -26,7 +26,7 @@ class EditWorkoutManager with ChangeNotifier {
   final TextEditingController _notes = TextEditingController();
 
   Exercise? _exercise;
-  List<WorkoutSet> _sets = [WorkoutSet()];
+  List<WorkoutSetField> _sets = [WorkoutSetField.init()];
   Duration? _rest;
   Color? _color;
 
@@ -34,7 +34,7 @@ class EditWorkoutManager with ChangeNotifier {
   TextEditingController get name => _name;
   TextEditingController get notes => _notes;
   Exercise? get exercise => _exercise;
-  List<WorkoutSet> get sets => _sets;
+  List<WorkoutSetField> get sets => _sets;
   Duration? get rest => _rest;
   Color? get color => _color;
 
@@ -44,7 +44,7 @@ class EditWorkoutManager with ChangeNotifier {
   }
 
   void addSet() {
-    _sets.add(WorkoutSet());
+    _sets.add(WorkoutSetField.init());
     notifyListeners();
   }
 
@@ -72,8 +72,8 @@ class EditWorkoutManager with ChangeNotifier {
   }
 
   Workout getWorkout() {
-    return Workout(
-        _id, _name.text, _exercise!, _sets, _rest, _color, _notes.text);
+    return Workout(_id, _name.text, _exercise!,
+        _sets.map((set) => set.toData()).toList(), _rest, _color, _notes.text);
   }
 
   void clear() {
@@ -84,7 +84,7 @@ class EditWorkoutManager with ChangeNotifier {
     for (var set in _sets) {
       set.dispose();
     }
-    _sets = [WorkoutSet()];
+    _sets = [WorkoutSetField.init()];
     _rest = null;
     _color = null;
     notifyListeners();
@@ -95,7 +95,16 @@ class EditWorkoutManager with ChangeNotifier {
     _name.text = workout.name;
     _notes.text = workout.notes;
     _exercise = workout.exercise;
-    _sets = workout.sets;
+
+    for (var set in _sets) {
+      set.dispose();
+    }
+    _sets = [];
+
+    for (var set in workout.sets) {
+      _sets.add(WorkoutSetField.fromData(set));
+    }
+
     _rest = workout.rest;
     _color = workout.color;
   }

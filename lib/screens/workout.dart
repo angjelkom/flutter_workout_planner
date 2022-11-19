@@ -144,7 +144,8 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(32.0),
                                 border: Border.all(
-                                    color: editManager.color == color ||
+                                    color: editManager.color?.value ==
+                                                color.value ||
                                             color == Colors.transparent &&
                                                 editManager.color == null
                                         ? Colors.blue

@@ -1,37 +1,33 @@
-import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:uuid/uuid.dart';
 
+part 'workout_set.g.dart';
+
+@JsonSerializable(explicitToJson: true, anyMap: true)
 class WorkoutSet {
-  final String id = const Uuid().v1();
-  final TextEditingController sets = TextEditingController();
-  final TextEditingController reps = TextEditingController();
-  final TextEditingController weight = TextEditingController();
+  final String id;
+  final int sets;
+  final int reps;
+  final int weight;
 
-  WorkoutSet();
+  WorkoutSet(this.id, this.sets, this.reps, this.weight);
 
-  void setSets(int amount) {
-    sets.text = '$amount';
-  }
+  WorkoutSet.fromData(this.id, String sets, String reps, String weight)
+      : sets = int.parse(sets),
+        reps = int.parse(reps),
+        weight = int.parse(weight);
 
-  void setReps(int amount) {
-    reps.text = '$amount';
-  }
+  // WorkoutSet.fromJson(Map<String, dynamic> json)
+  //     : id = const Uuid().v1(),
+  //       sets = json['sets'],
+  //       reps = json['reps'],
+  //       weight = json['weight'];
 
-  void setWeight(int amount) {
-    weight.text = '$amount';
-  }
+  // Map<String, dynamic> toJson() =>
+  //     {'id': id, 'sets': sets, 'reps': reps, 'weight': weight};
 
-  void dispose() {
-    sets.dispose();
-    reps.dispose();
-    weight.dispose();
-  }
+  factory WorkoutSet.fromJson(Map<String, dynamic> json) =>
+      _$WorkoutSetFromJson(json);
 
-  factory WorkoutSet.fromJson(Map<String, dynamic> json) => WorkoutSet()
-    ..sets.text = json['sets']
-    ..reps.text = json['reps']
-    ..weight.text = json['weight'];
-
-  Map<String, dynamic> toJson() =>
-      {'id': id, 'sets': sets.text, 'reps': reps.text, 'weight': weight.text};
+  Map<String, dynamic> toJson() => _$WorkoutSetToJson(this);
 }
