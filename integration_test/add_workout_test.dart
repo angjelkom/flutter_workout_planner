@@ -18,10 +18,53 @@ import 'package:integration_test/integration_test.dart';
 
 void main() {
   testWidgets('Add Workout test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
     IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-    // Build our app and trigger a frame.
+
     app.main();
+    await tester.pumpAndSettle();
+
+    final skipButton = find.widgetWithText(TextButton, 'Skip');
+    expect(skipButton, findsOneWidget);
+    await tester.tap(skipButton);
+    await tester.pumpAndSettle();
+
+    var nextButton = find.widgetWithText(TextButton, 'Next');
+    expect(nextButton, findsOneWidget);
+    await tester.tap(nextButton);
+    await tester.pumpAndSettle();
+
+    final startButton = find.widgetWithText(TextButton, 'Start');
+    expect(startButton, findsOneWidget);
+    await tester.tap(startButton);
+    await tester.pumpAndSettle();
+
+    final maleGender = find.widgetWithText(InkWell, 'Male');
+    expect(maleGender, findsOneWidget);
+    await tester.tap(maleGender);
+    await tester.pumpAndSettle();
+
+    int pages = 4;
+    while (pages > 0) {
+      nextButton = find.widgetWithText(TextButton, 'Next');
+      expect(nextButton, findsOneWidget);
+      await tester.tap(nextButton);
+      await tester.pumpAndSettle();
+      pages--;
+    }
+
+    var name = find.ancestor(
+      of: find.text('Name'),
+      matching: find.byType(TextField),
+    );
+    expect(name, findsOneWidget);
+
+    var text = "Angjelko";
+    await tester.enterText(name, text);
+    await tester.pumpAndSettle();
+
+    var doneButton = find.widgetWithText(TextButton, 'Done');
+    expect(doneButton, findsOneWidget);
+    await tester.tap(doneButton);
     await tester.pumpAndSettle();
 
     expect(find.text('Add your first workout!'), findsOneWidget);
@@ -31,13 +74,13 @@ void main() {
     await tester.tap(addButton);
     await tester.pump();
 
-    final name = find.ancestor(
+    name = find.ancestor(
       of: find.text('Name'),
       matching: find.byType(TextField),
     );
     expect(name, findsOneWidget);
 
-    const text = "My First Workout";
+    text = "My First Workout";
     await tester.enterText(name, text);
     await tester.pumpAndSettle();
 
@@ -113,7 +156,7 @@ void main() {
     );
     expect(removeSetButton, findsNothing);
 
-    final doneButton = find.ancestor(
+    doneButton = find.ancestor(
       of: find.text('Done'),
       matching: find.byType(TextButton),
     );

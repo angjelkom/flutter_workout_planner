@@ -15,8 +15,6 @@ class AppScaffold extends ConsumerStatefulWidget {
 }
 
 class _AppScaffoldState extends ConsumerState<AppScaffold> {
-  int _currentIndex = 0;
-
   bool _validate() {
     var result = ref.read(editWorkoutManager).validate();
     if (result == WorkoutValidator.ok) return true;
@@ -72,17 +70,12 @@ class _AppScaffoldState extends ConsumerState<AppScaffold> {
             location == '/workouts' || location == '/workouts/settings'
                 ? BottomNavigationBar(
                     selectedItemColor: Colors.blue,
-                    currentIndex: _currentIndex,
+                    currentIndex: location == '/workouts' ? 0 : 1,
                     onTap: ((value) {
-                      if (value != _currentIndex) {
-                        if (value == 0) {
-                          context.pop();
-                        } else {
-                          context.go('/workouts/settings');
-                        }
-                        setState(() {
-                          _currentIndex = value;
-                        });
+                      if (value == 0 && location == '/workouts/settings') {
+                        context.pop();
+                      } else if (value == 1 && location == '/workouts') {
+                        context.go('/workouts/settings');
                       }
                     }),
                     items: const [

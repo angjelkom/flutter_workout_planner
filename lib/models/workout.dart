@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter_workout_planner/models/exercise.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../adapters/color_converter.dart';
+import '../converters/color_converter.dart';
 import 'workout_set.dart';
 
 part 'workout.g.dart';
