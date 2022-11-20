@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:uuid/uuid.dart';
 
 part 'workout_set.g.dart';
 
@@ -16,15 +15,6 @@ class WorkoutSet {
       : sets = int.parse(sets),
         reps = int.parse(reps),
         weight = int.parse(weight);
-
-  // WorkoutSet.fromJson(Map<String, dynamic> json)
-  //     : id = const Uuid().v1(),
-  //       sets = json['sets'],
-  //       reps = json['reps'],
-  //       weight = json['weight'];
-
-  // Map<String, dynamic> toJson() =>
-  //     {'id': id, 'sets': sets, 'reps': reps, 'weight': weight};
 
   factory WorkoutSet.fromJson(Map<String, dynamic> json) =>
       _$WorkoutSetFromJson(json);

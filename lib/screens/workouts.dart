@@ -54,7 +54,7 @@ class _WorkoutsScreenState extends ConsumerState<WorkoutsScreen> {
       );
     }
 
-    return ReorderableListView.builder(
+    return ListView.builder(
       itemCount: workouts.length,
       itemBuilder: (context, index) {
         var workout = workouts[index];
@@ -63,7 +63,6 @@ class _WorkoutsScreenState extends ConsumerState<WorkoutsScreen> {
           key: ValueKey(workout.id),
         );
       },
-      onReorder: (oldIndex, newIndex) {},
     );
   }
 }

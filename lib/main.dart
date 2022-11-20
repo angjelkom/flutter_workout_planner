@@ -29,31 +29,33 @@ class WorkoutPlannerApp extends ConsumerWidget {
       title: 'Workout Planner',
       theme: ThemeData(
         useMaterial3: true,
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.black,
-        appBarTheme: Theme.of(context)
-            .appBarTheme
-            .copyWith(backgroundColor: Colors.black),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.black, // foreground (text) color
-          ),
-        ),
+        // brightness: Brightness.light,
+        // scaffoldBackgroundColor: Colors.black,
+        // appBarTheme: Theme.of(context)
+        //     .appBarTheme
+        //     .copyWith(backgroundColor: Colors.black),
+        // elevatedButtonTheme: ElevatedButtonThemeData(
+        //   style: ElevatedButton.styleFrom(
+        //     backgroundColor: Colors.black, // foreground (text) color
+        //   ),
+        // ),
         // appBarTheme: const AppBarTheme(backgroundColor: backgroundColor)
       ),
       darkTheme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.black,
-        appBarTheme: Theme.of(context)
-            .appBarTheme
-            .copyWith(backgroundColor: Colors.black),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.black, // foreground (text) color
+          useMaterial3: true,
+          brightness: Brightness.dark,
+          scaffoldBackgroundColor: Colors.black,
+          appBarTheme: Theme.of(context)
+              .appBarTheme
+              .copyWith(backgroundColor: Colors.black),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.black, // foreground (text) color
+            ),
           ),
-        ),
-      ),
+          bottomNavigationBarTheme: Theme.of(context)
+              .bottomNavigationBarTheme
+              .copyWith(backgroundColor: Colors.black)),
     );
   }
 }
